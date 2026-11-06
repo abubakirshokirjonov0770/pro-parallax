@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEBULA — Beyond Reality</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Syncopate:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-behavior: auto
+        }
+
+        body {
+            background: #03040a;
+            color: white;
+            font-family: 'Space Grotesk', sans-serif;
+            overflow-x: hidden;
+        }
+
+        body::-webkit-scrollbar {
+            width: 3px
+        }
+
+        body::-webkit-scrollbar-thumb {
+            background: #8a7cff
+        }
+
+        #space {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        header {
+            position: fixed;
+            z-index: 10;
+            top: 0;
+            width: 100%;
+            padding: 28px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            mix-blend-mode: screen;
+        }
+
+        .logo {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 19px;
+            letter-spacing: 5px;
+        }
+
+        .logo span {
+            color: #9589ff
+        }
+
+        nav {
+            display: flex;
+            gap: 38px
+        }
+
+        nav a {
+            color: #c4c5d3;
+            text-decoration: none;
+            font-size: 10px;
+            letter-spacing: 2px;
+        }
+
+        nav a:hover {
+            color: white
+        }
+
+        .menu {
+            display: none;
+            background: none;
+            color: white;
+            border: 0;
+            font-size: 24px;
+        }
+
+        .section {
+            position: relative;
+            height: 100svh;
+            min-height: 650px;
+            display: flex;
+            align-items: center;
+            padding: 0 10%;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .section>* {
+            pointer-events: auto
+        }
+
+        .content {
+            max-width: 650px
+        }
+
+        .tag {
+            color: #a69aff;
+            font-size: 10px;
+            letter-spacing: 5px;
+            margin-bottom: 30px;
+        }
+
+        h1,
+        h2 {
+            font-family: 'Syncopate', sans-serif;
+            font-weight: 400;
+            line-height: 1.15;
+        }
+
+        h1 {
+            font-size: clamp(48px, 8vw, 110px);
+            letter-spacing: -5px;
+        }
+
+        h1 span,
+        h2 span {
+            color: #9589ff;
+        }
+
+        .description {
+            color: #a5a7b9;
+            max-width: 420px;
+            font-size: 14px;
+            line-height: 2;
+            margin-top: 30px;
+        }
+
+        .actions {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-top: 45px;
+        }
+
+        .explore {
+            color: white;
+            background: #8375f3;
+            text-decoration: none;
+            padding: 16px 28px;
+            font-size: 10px;
+            letter-spacing: 2px;
+            transition: .3s;
+        }
+
+        .explore:hover {
+            background: white;
+            color: #17142c;
+            transform: translateY(-4px);
+        }
+
+        .text-link {
+            font-size: 10px;
+            color: #b8b5d2;
+            letter-spacing: 2px;
+            text-decoration: none;
+        }
+
+        .side-info {
+            position: absolute;
+            right: 7%;
+            bottom: 12%;
+            color: #77788c;
+            font-size: 9px;
+            letter-spacing: 3px;
+            writing-mode: vertical-rl;
+        }
+
+        .progress {
+            position: fixed;
+            z-index: 20;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 13px;
+        }
+
+        .progress span {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: #777;
+            transition: .4s;
+        }
+
+        .progress span.active {
+            height: 28px;
+            background: #a69aff;
+            border-radius: 5px;
+        }
+
+        .center {
+            text-align: center;
+            justify-content: center
+        }
+
+        .center .content {
+            max-width: 800px
+        }
+
+        .center .description {
+            margin-left: auto;
+            margin-right: auto
+        }
+
+        .right {
+            justify-content: flex-end
+        }
+
+        .right .content {
+            max-width: 550px
+        }
+
+        .section-number {
+            color: #66677c;
+            font-size: 10px;
+            letter-spacing: 4px;
+            margin-top: 65px;
+        }
+
+        .footer {
+            height: 70vh;
+            min-height: 450px;
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(transparent, #03040a 65%);
+        }
+
+        .footer h2 {
+            font-size: clamp(35px, 8vw, 90px);
+        }
+
+        .footer p {
+            margin-top: 25px;
+            color: #85869a;
+            letter-spacing: 4px;
+            font-size: 10px;
+        }
+
+        .mobile-note {
+            display: none
+        }
+
+        @media(max-width:768px) {
+            header {
+                padding: 22px 6%
+            }
+
+            nav {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                padding: 30px;
+                background: #090a16ee;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav.open {
+                display: flex
+            }
+
+            .menu {
+                display: block
+            }
+
+            .section {
+                padding: 0 7%;
+                min-height: 650px;
+            }
+
+            h1 {
+                font-size: clamp(44px, 12vw, 75px);
+                letter-spacing: -3px
+            }
+
+            h2 {
+                font-size: 38px
+            }
+
+            .description {
+                font-size: 13px;
+                max-width: 340px
+            }
+
+            .progress {
+                right: 12px
+            }
+
+            .side-info {
+                right: 6%;
+                bottom: 8%
+            }
+
+            .actions {
+                gap: 18px
+            }
+
+            .explore {
+                padding: 14px 18px
+            }
+
+            .mobile-note {
+                display: block;
+                font-size: 9px;
+                color: #777;
+                letter-spacing: 2px;
+                margin-top: 45px;
+            }
+        }
+
+        @media(prefers-reduced-motion:reduce) {
+            html {
+                scroll-behavior: auto
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <canvas id="space"></canvas>
+
+    <header>
+        <div class="logo">NEBULA<span>.</span></div>
+        <nav id="nav">
+            <a href="#one">UNIVERSE</a>
+            <a href="#two">PLANETS</a>
+            <a href="#three">DIMENSION</a>
+            <a href="#four">INFINITY</a>
+        </nav>
+        <button class="menu" onclick="document.querySelector('nav').classList.toggle('open')">☰</button>
+    </header>
+
+    <div class="progress" id="progress">
+        <span class="active"></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <main>
+
+        <section class="section" id="one">
+            <div class="content">
+                <div class="tag">01 — ENTER THE UNKNOWN</div>
+                <h1>BEYOND<br><span>REALITY.</span></h1>
+                <p class="description">
+                    Explore a universe where imagination meets
+                    technology. An experience built beyond
+                    the boundaries of ordinary perception.
+                </p>
+                <div class="actions">
+                    <a class="explore" href="#two">START EXPLORING ↗</a>
+                    <a class="text-link" href="#four">DISCOVER MORE</a>
+                </div>
+                <div class="mobile-note">SCROLL TO TRAVEL THROUGH SPACE ↓</div>
+            </div>
+            <div class="side-info">SCROLL TO EXPLORE — 001</div>
+        </section>
+
+        <section class="section right" id="two">
+            <div class="content">
+                <div class="tag">02 — THE COSMIC GIANT</div>
+                <h2>ANOTHER<br><span>WORLD.</span></h2>
+                <p class="description">
+                    A world suspended in infinite darkness.
+                    Witness the beauty of cosmic formations,
+                    mysterious atmospheres and celestial bodies.
+                </p>
+                <div class="section-number">SATURN SYSTEM / 001</div>
+            </div>
+            <div class="side-info">A NEW DIMENSION — 002</div>
+        </section>
+
+        <section class="section center" id="three">
+            <div class="content">
+                <div class="tag">03 — BEYOND THE HORIZON</div>
+                <h2>FEEL THE<br><span>INFINITE.</span></h2>
+                <p class="description">
+                    Gravity disappears. Time becomes meaningless.
+                    Travel through the deepest corners of space.
+                </p>
+                <div class="section-number">DEEP SPACE / 002</div>
+            </div>
+        </section>
+
+        <section class="section" id="four">
+            <div class="content">
+                <div class="tag">04 — THE FINAL FRONTIER</div>
+                <h2>THERE IS<br>NO <span>LIMIT.</span></h2>
+                <p class="description">
+                    The universe does not end here.
+                    It only begins where your imagination takes you.
+                </p>
+                <div class="section-number">INFINITY / ∞</div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <h2>NEBULA<span style="color:#9589ff">.</span></h2>
+        <p>DESIGNED BEYOND REALITY — 2026</p>
+    </footer>
+
+    <script type="module">
+        import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js';
+
+        // SCENE
+        const scene = new THREE.Scene();
+        scene.fog = new THREE.FogExp2(0x03040a, 0.006);
+
+        const camera = new THREE.PerspectiveCamera(
+            55, innerWidth / innerHeight, 0.1, 400
+        );
+        camera.position.set(0, 0, 12);
+
+        const renderer = new THREE.WebGLRenderer({
+            canvas: document.querySelector('#space'),
+            antialias: true,
+            alpha: false,
+            powerPreference: 'high-performance'
+        });
+        renderer.setPixelRatio(Math.min(devicePixelRatio, 1.8));
+        renderer.setSize(innerWidth, innerHeight);
+        renderer.outputColorSpace = THREE.SRGBColorSpace;
+        renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        renderer.toneMappingExposure = 1.25;
+
+        // LIGHTS
+        scene.add(new THREE.AmbientLight(0x7777aa, 1.2));
+
+        const sun = new THREE.PointLight(0xb0a4ff, 150, 100);
+        sun.position.set(-8, 5, 8);
+        scene.add(sun);
+
+        // PROCEDURAL PLANET TEXTURE
+        function planetTexture(base, light) {
+            const c = document.createElement('canvas');
+            c.width = 1024; c.height = 512;
+            const ctx = c.getContext('2d');
+
+            const g = ctx.createLinearGradient(0, 0, 1024, 512);
+            g.addColorStop(0, base);
+            g.addColorStop(.5, light);
+            g.addColorStop(1, '#080a20');
+            ctx.fillStyle = g;
+            ctx.fillRect(0, 0, 1024, 512);
+
+            for (let i = 0; i < 180; i++) {
+                ctx.beginPath();
+                let y = Math.random() * 512;
+                ctx.ellipse(
+                    Math.random() * 1024, y,
+                    Math.random() * 250 + 30,
+                    Math.random() * 12 + 2,
+                    Math.random(), 0, Math.PI * 2
+                );
+                ctx.fillStyle = `rgba(180,175,255,${Math.random() * .12})`;
+                ctx.fill();
+            }
+
+            const tex = new THREE.CanvasTexture(c);
+            tex.colorSpace = THREE.SRGBColorSpace;
+            return tex;
+        }
+
+        // ATMOSPHERE
+        function atmosphere(radius, color) {
+            const mat = new THREE.ShaderMaterial({
+                uniforms: { glowColor: { value: new THREE.Color(color) } },
+                vertexShader: `
+   varying vec3 vNormal;
+   varying vec3 vView;
+   void main(){
+    vNormal=normalize(normalMatrix*normal);
+    vec4 mv=modelViewMatrix*vec4(position,1.);
+    vView=normalize(-mv.xyz);
+    gl_Position=projectionMatrix*mv;
+   }
+  `,
+                fragmentShader: `
+   uniform vec3 glowColor;
+   varying vec3 vNormal;
+   varying vec3 vView;
+   void main(){
+    float intensity=pow(0.65-dot(vNormal,vView),3.0);
+    gl_FragColor=vec4(glowColor,intensity*.9);
+   }
+  `,
+                transparent: true,
+                blending: THREE.AdditiveBlending,
+                side: THREE.BackSide,
+                depthWrite: false
+            });
+            return new THREE.Mesh(
+                new THREE.SphereGeometry(radius, 64, 64), mat
+            );
+        }
+
+        // PLANET ONE
+        const planet1 = new THREE.Group();
+        planet1.position.set(0, 0, 0);
+        scene.add(planet1);
+
+        const earth = new THREE.Mesh(
+            new THREE.SphereGeometry(3.1, 96, 96),
+            new THREE.MeshStandardMaterial({
+                map: planetTexture('#252b66', '#9b76bb'),
+                roughness: .8,
+                metalness: .15
+            })
+        );
+        planet1.add(earth);
+        planet1.add(atmosphere(3.35, 0x8175ff));
+
+        const ring = new THREE.Mesh(
+            new THREE.RingGeometry(4.2, 6.8, 128),
+            new THREE.MeshBasicMaterial({
+                color: 0x9386d9,
+                side: THREE.DoubleSide,
+                transparent: true,
+                opacity: .5
+            })
+        );
+        ring.rotation.x = 1.25;
+        ring.rotation.y = .18;
+        planet1.add(ring);
+
+        // PLANET TWO
+        const planet2 = new THREE.Group();
+        planet2.position.set(0, 0, -37);
+        scene.add(planet2);
+
+        const giant = new THREE.Mesh(
+            new THREE.SphereGeometry(4.5, 96, 96),
+            new THREE.MeshStandardMaterial({
+                map: planetTexture('#5d3028', '#c68d58'),
+                roughness: .75
+            })
+        );
+        planet2.add(giant);
+        planet2.add(atmosphere(4.8, 0xff9b67));
+
+        const ring2 = new THREE.Mesh(
+            new THREE.RingGeometry(5.5, 9, 160),
+            new THREE.MeshBasicMaterial({
+                color: 0xd39a71,
+                side: THREE.DoubleSide,
+                transparent: true,
+                opacity: .45
+            })
+        );
+        ring2.rotation.x = 1.15;
+        planet2.add(ring2);
+
+        // COSMIC ENERGY / BLACK HOLE
+        const blackHole = new THREE.Group();
+        blackHole.position.set(0, 0, -75);
+        scene.add(blackHole);
+
+        const hole = new THREE.Mesh(
+            new THREE.SphereGeometry(3, 64, 64),
+            new THREE.MeshBasicMaterial({ color: 0x010105 })
+        );
+        blackHole.add(hole);
+
+        const disk = new THREE.Mesh(
+            new THREE.TorusGeometry(5, 1.15, 24, 160),
+            new THREE.MeshBasicMaterial({
+                color: 0x9875ff,
+                transparent: true,
+                opacity: .7
+            })
+        );
+        disk.rotation.x = 1.2;
+        blackHole.add(disk);
+
+        const diskGlow = new THREE.Mesh(
+            new THREE.TorusGeometry(4.2, .18, 16, 160),
+            new THREE.MeshBasicMaterial({ color: 0xffa36d })
+        );
+        diskGlow.rotation.x = 1.2;
+        blackHole.add(diskGlow);
+
+        // STARFIELD
+        const starCount = 6500;
+        const positions = new Float32Array(starCount * 3);
+
+        for (let i = 0; i < starCount; i++) {
+            positions[i * 3] = (Math.random() - .5) * 180;
+            positions[i * 3 + 1] = (Math.random() - .5) * 100;
+            positions[i * 3 + 2] = -Math.random() * 140 + 30;
+        }
+
+        const starGeo = new THREE.BufferGeometry();
+        starGeo.setAttribute('position',
+            new THREE.BufferAttribute(positions, 3)
+        );
+
+        const stars = new THREE.Points(
+            starGeo,
+            new THREE.PointsMaterial({
+                color: 0xc5c5ff,
+                size: .09,
+                transparent: true,
+                opacity: .9,
+                sizeAttenuation: true
+            })
+        );
+        scene.add(stars);
+
+        // NEBULA PARTICLES
+        const particleCount = 1400;
+        const particlePositions = new Float32Array(particleCount * 3);
+
+        for (let i = 0; i < particleCount; i++) {
+            particlePositions[i * 3] = (Math.random() - .5) * 60;
+            particlePositions[i * 3 + 1] = (Math.random() - .5) * 30;
+            particlePositions[i * 3 + 2] = -Math.random() * 110;
+        }
+
+        const particleGeo = new THREE.BufferGeometry();
+        particleGeo.setAttribute('position',
+            new THREE.BufferAttribute(particlePositions, 3)
+        );
+        const particles = new THREE.Points(
+            particleGeo,
+            new THREE.PointsMaterial({
+                color: 0x7765d9,
+                size: .12,
+                transparent: true,
+                opacity: .4
+            })
+        );
+        scene.add(particles);
+
+        // SCROLL CAMERA ANIMATION
+        let scrollProgress = 0;
+        let targetX = 0, targetY = 0;
+        let mouseX = 0, mouseY = 0;
+
+        function updateScroll() {
+            const maxScroll = document.documentElement.scrollHeight - innerHeight;
+            scrollProgress = maxScroll > 0 ? scrollY / maxScroll : 0;
+        }
+
+        window.addEventListener('scroll', updateScroll, { passive: true });
+        updateScroll();
+
+        // MOUSE PARALLAX
+        window.addEventListener('pointermove', e => {
+            mouseX = (e.clientX / innerWidth - .5) * 2;
+            mouseY = (e.clientY / innerHeight - .5) * 2;
+        }, { passive: true });
+
+        // ANIMATION
+        const clock = new THREE.Clock();
+
+        function animate() {
+            requestAnimationFrame(animate);
+
+            const t = clock.getElapsedTime();
+            const p = scrollProgress;
+
+            // Camera travels through 3D universe
+            const desiredZ = 12 - p * 100;
+            const desiredX = Math.sin(p * Math.PI * 2) * 1.8;
+
+            targetX += (desiredX + mouseX * .55 - targetX) * .035;
+            targetY += (mouseY * .4 - targetY) * .035;
+
+            camera.position.x += (targetX - camera.position.x) * .035;
+            camera.position.y += (targetY - camera.position.y) * .035;
+            camera.position.z += (desiredZ - camera.position.z) * .065;
+
+            camera.rotation.z = Math.sin(p * Math.PI * 2) * .025;
+            camera.lookAt(
+                targetX * .15,
+                targetY * .15,
+                camera.position.z - 10
+            );
+
+            // Different layers move at different depths
+            planet1.rotation.y = t * .045;
+            planet1.rotation.x = Math.sin(t * .12) * .08;
+            planet2.rotation.y = -t * .025;
+            planet2.rotation.z = t * .012;
+            blackHole.rotation.z = t * .06;
+
+            stars.rotation.y = p * .12;
+            stars.rotation.x = mouseY * .015;
+
+            particles.rotation.y = -p * .2;
+            particles.rotation.x = t * .003;
+
+            // Cinematic planet lighting
+            sun.position.x = -8 + mouseX * 2;
+            sun.position.y = 5 - mouseY * 2;
+
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // RESPONSIVE
+        window.addEventListener('resize', () => {
+            camera.aspect = innerWidth / innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(innerWidth, innerHeight);
+            renderer.setPixelRatio(Math.min(devicePixelRatio, 1.8));
+        });
+
+        // NAVIGATION PROGRESS
+        const sections = ['one', 'two', 'three', 'four'].map(
+            id => document.getElementById(id)
+        );
+        const dots = [...document.querySelectorAll('.progress span')];
+
+        const sectionObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const index = sections.indexOf(entry.target);
+                    dots.forEach((dot, i) => {
+                        dot.classList.toggle('active', i === index);
+                    });
+                }
+            });
+        }, { threshold: .5 });
+
+        sections.forEach(s => sectionObserver.observe(s));
+
+        document.querySelectorAll('nav a').forEach(a => {
+            a.addEventListener('click', () => {
+                document.querySelector('nav').classList.remove('open');
+            });
+        });
+    </script>
+
+</body>
+
+</html>
